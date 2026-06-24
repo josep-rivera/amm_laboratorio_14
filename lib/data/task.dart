@@ -1,11 +1,9 @@
-import '../../domain/models/task.dart';
-
-class TaskModel {
-  const TaskModel({
+class Task {
+  const Task({
     this.id,
     required this.title,
     this.description,
-    required this.isCompleted,
+    this.isCompleted = false,
     required this.createdAt,
   });
 
@@ -15,20 +13,12 @@ class TaskModel {
   final bool isCompleted;
   final DateTime createdAt;
 
-  factory TaskModel.fromMap(Map<String, dynamic> map) => TaskModel(
+  factory Task.fromMap(Map<String, dynamic> map) => Task(
         id: map['id'] as int?,
         title: map['title'] as String,
         description: map['description'] as String?,
         isCompleted: (map['is_completed'] as int) == 1,
         createdAt: DateTime.parse(map['created_at'] as String),
-      );
-
-  factory TaskModel.fromDomain(Task task) => TaskModel(
-        id: task.id,
-        title: task.title,
-        description: task.description,
-        isCompleted: task.isCompleted,
-        createdAt: task.createdAt,
       );
 
   Map<String, dynamic> toMap() => {
@@ -39,11 +29,27 @@ class TaskModel {
         'created_at': createdAt.toIso8601String(),
       };
 
-  Task toDomain() => Task(
-        id: id,
-        title: title,
-        description: description,
-        isCompleted: isCompleted,
-        createdAt: createdAt,
-      );
+  Task copyWith({
+    int? id,
+    String? title,
+    String? description,
+    bool? isCompleted,
+    DateTime? createdAt,
+  }) {
+    return Task(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      isCompleted: isCompleted ?? this.isCompleted,
+      createdAt: createdAt ?? this.createdAt,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Task && runtimeType == other.runtimeType && id == other.id;
+
+  @override
+  int get hashCode => id.hashCode;
 }

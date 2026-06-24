@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../domain/models/task.dart';
-import '../view_models/task_view_model.dart';
+import '../data/task.dart';
+import 'task_view_model.dart';
 
 class TaskFormView extends StatefulWidget {
   const TaskFormView({super.key, this.task});

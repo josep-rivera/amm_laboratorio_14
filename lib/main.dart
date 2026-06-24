@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'data/repositories/task_repository_impl.dart';
-import 'data/services/database_service.dart';
-import 'ui/core/app_theme.dart';
-import 'ui/features/tasks/view_models/task_view_model.dart';
-import 'ui/features/tasks/views/task_list_view.dart';
+import 'data/database_service.dart';
+import 'data/task_repository_impl.dart';
+import 'ui/app_theme.dart';
+import 'ui/task_list_view.dart';
+import 'ui/task_view_model.dart';
 
 void main() {
   runApp(const TaskManagerApp());

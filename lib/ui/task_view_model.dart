@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
-import '../../../../domain/models/task.dart';
-import '../../../../domain/repositories/task_repository.dart';
+import '../data/task.dart';
+import '../data/task_repository.dart';
 
 enum TaskStatus { initial, loading, success, failure }
 

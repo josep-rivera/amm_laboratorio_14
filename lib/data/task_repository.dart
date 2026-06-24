@@ -1,4 +1,4 @@
-import '../models/task.dart';
+import 'task.dart';
 
 abstract interface class TaskRepository {
   Future<List<Task>> getAll();

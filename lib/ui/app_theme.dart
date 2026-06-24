@@ -13,5 +13,4 @@ abstract final class AppTheme {
           filled: true,
         ),
       );
-
 }
