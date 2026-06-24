@@ -28,29 +28,8 @@ class DatabaseService {
             created_at TEXT NOT NULL
           )
         ''');
-        await _seed(db);
       },
     );
-  }
-
-  Future<void> _seed(Database db) async {
-    final now = DateTime.now();
-    final rows = [
-      ('Buy groceries', 'Milk, eggs, bread, and coffee', false, now.subtract(const Duration(days: 2))),
-      ('Read Clean Architecture', 'Chapters 4 through 6 — SOLID principles', false, now.subtract(const Duration(days: 1))),
-      ('Fix login bug', 'Token refresh fails silently on 401 — check interceptor', true, now.subtract(const Duration(hours: 5))),
-      ('Write unit tests', 'Cover TaskRepositoryImpl with in-memory DB', false, now.subtract(const Duration(hours: 2))),
-      ('Call the dentist', null, true, now.subtract(const Duration(hours: 1))),
-    ];
-
-    for (final (title, description, isCompleted, createdAt) in rows) {
-      await db.insert('tasks', {
-        'title': title,
-        'description': description,
-        'is_completed': isCompleted ? 1 : 0,
-        'created_at': createdAt.toIso8601String(),
-      });
-    }
   }
 
   Future<int> insert(String table, Map<String, dynamic> values) async {
